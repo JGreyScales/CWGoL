@@ -1,4 +1,4 @@
-import curses
+import curses, time, msvcrt
 
 class functions:
     def __init__(self) -> None:
@@ -20,8 +20,18 @@ class functions:
 
 
     def refresh(loadState, std):
-        if loadState == 0:
-            std.refresh()
-            return None
-        else:
-            return std.getch()
+            if loadState == 0:
+                std.refresh()
+                return None
+            else:
+                return std.getch()
+
+    def select(buttons):
+        for i in buttons:
+            if buttons[i]:
+                if i == "Start":
+                    return 1
+                elif i == "Rules":
+                    return 2
+                elif i == "Exit":
+                    return 3
