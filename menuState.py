@@ -1,10 +1,6 @@
 import curses
 from Utils import functions
 class menuState:
-    def __init__(self):
-        pass
-
-
     def menu(std, bitch, substate, loadState = bool):
 
         # UI effects
@@ -27,13 +23,10 @@ class menuState:
         elif keyPress == 51:
             bitch |= {"Start":False, "Rules":False, "Exit":True}
 
-
-
         # if player selects
         elif keyPress == 10:
 
             x = functions.select(bitch)
-
 
             # apply the different assigned functions
             if x == 1:

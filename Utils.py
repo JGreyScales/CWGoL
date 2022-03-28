@@ -1,4 +1,4 @@
-import curses, time, msvcrt
+import curses
 
 class functions:
     def __init__(self) -> None:
@@ -7,7 +7,6 @@ class functions:
     def rectangle(std, uly, ulx, lry, lrx):
 #       taken from:
 #       https://www.programcreek.com/python/?project_name=ShikyoKira%2FProject-New-Reign---Nemesis-Main
-        print(lrx - ulx - 1)
         std.vline(uly+1, ulx, curses.ACS_VLINE, lry - uly - 1)
         std.hline(uly, ulx+1, curses.ACS_HLINE, lrx - ulx - 1)
         std.hline(lry, ulx+1, curses.ACS_HLINE, lrx - ulx - 1)
@@ -29,9 +28,10 @@ class functions:
     def select(buttons):
         for i in buttons:
             if buttons[i]:
-                if i == "Start":
-                    return 1
-                elif i == "Rules":
-                    return 2
-                elif i == "Exit":
-                    return 3
+                count = 1
+                for j in buttons:
+                    if i == j: return count
+                    count += 1
+
+    def getNearby(std):
+        pass

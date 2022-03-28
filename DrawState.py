@@ -1,30 +1,31 @@
-from tkinter import EventType
-import Utils, curses
+import curses
 class drawState:
-    def __init__(self) -> None:
-        pass
-
-    def draw(std, menu):
-
+    def draw(std):
         # get user input
+
         event = std.getch() 
-        std.addstr(5,5,str(event))
         if event == curses.KEY_MOUSE:
             _, mx, my, _, _ = curses.getmouse()
+            # create banner to allow for info text
+            if my > 0:
+                x = std.inch(my, mx)
+                std.addstr(0,0, f"char:{x} Pos:{my},{mx}")
+
+                if x == 9608:
+                    std.addch(my, mx, ' ')
+                    std.refresh()
+                else:
+                    std.addstr(my, mx, "█")
+
         elif event == 10:
-            pass
+            _, xMax = std.getmaxyx()
+            for i in range(0, xMax):
+                std.addch(0, i, ' ')
+            return 2
         elif event == 27:
             std.clear()
             return 0
-
-        # check and update states
-
-
-
-
+            
         #cycle
         std.refresh()
-
-
-
         return 1

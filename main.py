@@ -1,9 +1,6 @@
 #external imports
 from curses import wrapper
 import curses, ctypes
-from os import stat
-from sre_parse import State
-
 
 #Internal Imports
 from menuState import menuState
@@ -24,8 +21,8 @@ def main(std, board=[["", 0]* 253] * 66):
     curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_BLACK)
 
     # var inits
+
     state, oldState, keyPress, substate = 0, 0, 0, 0
-    menu = [['o'] * 228] * 66
     text = {
             "Start": True,
             "Rules": False,
@@ -48,12 +45,12 @@ def main(std, board=[["", 0]* 253] * 66):
         # if drawing
         elif state == 1:
             curses.mousemask(1)
-            state = drawState.draw(std, menu)
+            state = drawState.draw(std)
 
         # if running
         elif state == 2:
             curses.mousemask(0)
-            cycleState.sceneCycle()
+            cycleState.sceneCycle(std)
 
         oldState = state
 
